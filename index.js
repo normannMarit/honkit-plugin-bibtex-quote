@@ -19,7 +19,7 @@ module.exports = {
                     this.config.set('bibCount', this.config.get('bibCount') + 1);
                     citation.number = this.config.get('bibCount');
                 }
-                return '[' + citation.number + ']';
+                return '<a href="#cite-' + citation.number + '">[' + citation.number + ']</a>';
             } else {
                 return "[Citation not found]";
             }
@@ -43,7 +43,7 @@ module.exports = {
                 var result = '<table class="references">';
 
                 sortedBib.forEach(function(item) {
-                    result += '<tr><td>[' + item.number + ']</td><td>';
+                    result += '<tr><td><span class="citation-number" id="cite-' + item.number + '">' + item.number + '</span></td><td>';
 
                     if (item.entryTags.AUTHOR) {
                         result += formatAuthors(item.entryTags.AUTHOR) + ', ';
