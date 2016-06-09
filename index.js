@@ -12,13 +12,12 @@ module.exports = {
 
     filters: {
         cite: function(key) {
-            var citation = _.find(this.book.bib, {'citationKey': key.toUpperCase()});
-
-            if (citation != undefined) {
+            var citation = _.find(this.config.get('bib'), {'citationKey': key.toUpperCase()});
+            if (citation !== undefined) {
                 if (!citation.used) {
                     citation.used = true;
-                    this.book.bibCount++;
-                    citation.number = this.book.bibCount;
+                    this.config.set('bibCount', this.config.get('bibCount') + 1);
+                    citation.number = this.config.get('bibCount');
                 }
                 return '[' + citation.number + ']';
             } else {
@@ -29,16 +28,16 @@ module.exports = {
 
     hooks: {
         init: function() {
-            var bib = fs.readFileSync(this.root + '/literature.bib', 'utf8');
-            this.bib = bibtexParse.toJSON(bib);
-            this.bibCount = 0;
+            var bib = fs.readFileSync('literature.bib', 'utf8');
+            this.config.set('bib', bibtexParse.toJSON(bib));
+            this.config.set('bibCount', 0);
         }
     },
 
     blocks: {
         references: {
             process: function(blk) {
-                var usedBib = _.filter(this.book.bib, 'used');
+                var usedBib = _.filter(this.config.get('bib'), 'used');
                 var sortedBib = _.sortBy(usedBib, 'number');
 
                 var result = '<table class="references">';
@@ -50,13 +49,21 @@ module.exports = {
                         result += formatAuthors(item.entryTags.AUTHOR) + ', ';
                     }
                     if (item.entryTags.TITLE) {
-                        result += item.entryTags.TITLE + ', ';
+                        if (item.entryTags.URL) {
+                            result += '<a href="' + item.entryTags.URL + '">' + item.entryTags.TITLE + '</a>, ';
+                        } else {
+                            result += item.entryTags.TITLE + ', ';
+                        }
                     }
                     if (item.entryTags.BOOKTITLE) {
-                        result += '<i>' + item.entryTags.BOOKTITLE + '</i>, '
+                        if (item.entryTags.BOOKURL) {
+                            result += '<a href="' + item.entryTags.BOOKURL + '">' + item.entryTags.BOOKTITLE + '</a>, ';
+                        } else {
+                            result += '<i>' + item.entryTags.BOOKTITLE + '</i>, ';
+                        }
                     }
                     if (item.entryTags.PUBLISHER) {
-                        result += '<i>' + item.entryTags.PUBLISHER + '</i>, '
+                        result += '<i>' + item.entryTags.PUBLISHER + '</i>, ';
                     }
                     if (item.entryTags.YEAR) {
                         result += item.entryTags.YEAR + '.';

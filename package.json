@@ -1,16 +1,16 @@
 {
-  "name": "gitbook-plugin-bibtex-citation",
+  "name": "gitbook-plugin-bibtex-cite",
   "description": "Bibtex citations for GitBook",
-  "author": "Manuel Mitasch",
+  "author": "Manuel Mitasch, Duane Johnson",
   "main": "index.js",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "engines": {
-    "gitbook": ">1.x.x"
+    "gitbook": ">2.x.x"
   },
-  "homepage": "https://github.com/manuelmitasch/gitbook-plugin-bibtex-citation",
+  "homepage": "https://github.com/canadaduane/gitbook-plugin-bibtex-cite",
   "repository": {
     "type": "git",
-    "url": "https://github.com/manuelmitasch/gitbook-plugin-bibtex-citation"
+    "url": "https://github.com/canadaduane/gitbook-plugin-bibtex-cite"
   },
   "license": "MIT",
   "dependencies": {
