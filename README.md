@@ -41,6 +41,17 @@ Then, when you want to cite the reference to `The Late War` in the bib file, use
 {{ "TLW" | cite }}
 ```
 
+The referenced pages or any other additional information may be used as a string passed to the `cite` filter:
+
+```
+{{ "TLW" | cite("p.~121") }}
+```
+
+The argument, "p. 211", will show up inside the same brackets. 
+Note the tilde in [p.~211], which replaces the end-of-sentence spacing with a non-breakable inter-word space.
+This non-breakable inter-word space is inserted because the end-of-sentence spacing would be too wide,
+and "p." should not be separated from the page number.
+
 You can also add a table of references with:
 
 ```
