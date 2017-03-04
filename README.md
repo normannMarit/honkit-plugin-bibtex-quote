@@ -41,6 +41,12 @@ Then, when you want to cite the reference to `The Late War` in the bib file, use
 {{ "TLW" | cite }}
 ```
 
+The referenced pages or any other additional information may be used as a string passed to the `cite` filter:
+
+```
+{{ "TLW" | cite("p. 121") }}
+```
+
 You can also add a table of references with:
 
 ```

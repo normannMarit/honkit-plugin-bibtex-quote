@@ -11,7 +11,7 @@ module.exports = {
     },
 
     filters: {
-        cite: function(key) {
+        cite: function(key, additionalText) {
             var citation = _.find(this.config.get('bib'), {'citationKey': key.toUpperCase()});
             if (citation !== undefined) {
                 if (!citation.used) {
@@ -19,7 +19,11 @@ module.exports = {
                     this.config.set('bibCount', this.config.get('bibCount') + 1);
                     citation.number = this.config.get('bibCount');
                 }
-                return '<a href="#cite-' + citation.number + '">[' + citation.number + ']</a>';
+                var citationText = citation.number
+                if (additionalText) {
+                    citationText += ", " + additionalText
+                }
+                return '<a href="#cite-' + citation.number + '">[' + citationText + ']</a>';
             } else {
                 return "[Citation not found]";
             }
