@@ -19,9 +19,10 @@ module.exports = {
                     this.config.set('bibCount', this.config.get('bibCount') + 1);
                     citation.number = this.config.get('bibCount');
                 }
-                var citationText = citation.number
+                var citationText = citation.number;
                 if (additionalText) {
-                    citationText += ", " + additionalText
+                    additionalText = additionalText.replace(/~/g, "&nbsp;");
+                    citationText += ", " + additionalText;
                 }
                 return '<a href="#cite-' + citation.number + '">[' + citationText + ']</a>';
             } else {
