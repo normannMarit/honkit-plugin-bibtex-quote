@@ -78,13 +78,13 @@ module.exports = {
 };
 
 function valuesForKeys(keys, dict) {
-	var values = [];
-  keys.forEach(function(key) {
-  	if (key in dict) {
-    	values.push(dict[key]);
-    }
-  });
-  return values;
+    var values = [];
+    keys.forEach(function(key) {
+        if (key in dict) {
+            values.push(dict[key]);
+        }
+    });
+    return values;
 }
 
 function getTagsDictionary(entryTags) {
