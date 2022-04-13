@@ -3,19 +3,24 @@
   "description": "Bibtex citations for Honkit fork of https://github.com/canadaduane/gitbook-plugin-bibtex-cite ",
   "author": "Manuel Mitasch, Duane Johnson, Normann Marit",
   "main": "index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "honkit": ">2.x.x"
   },
   "homepage": "https://github.com/normannMarit/honkit-plugin-bibtex-quote",
   "repository": {
     "type": "git",
-    "url": "https://github.com/normannMarit/honkit-plugin-bibtex-quote"
+    "url": "git+https://github.com/normannMarit/honkit-plugin-bibtex-quote.git"
   },
   "license": "MIT",
   "dependencies": {
     "bibtex-parser-js": "0.0.2",
     "lodash": "^4.0.0"
   },
-  "scripts": {}
+  "scripts": {},
+  "bugs": {
+    "url": "https://github.com/normannMarit/honkit-plugin-bibtex-quote/issues"
+  },
+  "devDependencies": {},
+  "keywords": []
 }

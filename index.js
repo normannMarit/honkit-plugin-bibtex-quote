@@ -35,7 +35,8 @@ module.exports = {
 
   hooks: {
     init: function () {
-      var bib = fs.readFileSync("literature.bib", "utf8");
+      var filepath = this.resolve("literature.bib");
+      var bib = fs.readFileSync(filepath, "utf8");
       this.config.set("bib", bibtexParse.toJSON(bib));
       this.config.set("bibCount", 0);
     },
