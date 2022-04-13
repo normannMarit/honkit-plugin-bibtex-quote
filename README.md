@@ -1,7 +1,7 @@
 Bibtex Citations Gitbook Plugin
 ==============
 
-This plugins requires gitbook `>=2.0.0`.
+This plugins requires honkit `>=2.0.0`.
 
 ### Install
 
@@ -9,7 +9,7 @@ Add this to your `book.json`, then run `gitbook install`:
 
 ```
 {
-    "plugins": ["bibtex-cite"]
+    "plugins": ["bibtex-quote"]
 }
 ```
 
