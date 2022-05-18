@@ -25,7 +25,11 @@ module.exports = {
           citationText += ", " + additionalText;
         }
         return (
-          '<a href="#cite-' + citation.number + '">[' + citationText + "]</a>"
+          '<sup><a href="#cite-' +
+          citation.number +
+          '">[' +
+          citationText +
+          "]</a></sup>"
         );
       } else {
         return "[Citation not found]";
@@ -52,11 +56,7 @@ module.exports = {
 
         sortedBib.forEach(function (item) {
           result +=
-            '<blockquote id="cite-' +
-            item.number +
-            '"><sup>' +
-            item.number +
-            "</sup>. ";
+            '<blockquote id="cite-' + item.number + '">' + item.number + " ";
           var defaultKeys = [
             "AUTHOR",
             "TITLE",
@@ -64,11 +64,31 @@ module.exports = {
             "PUBLISHER",
             "YEAR",
             "NOTE",
+            "URL",
           ];
           var keysForTypes = {
-            ONLINE: {
-              keys: ["AUTHOR", "PLAIN_TITLE", "SUBTITLE", "NOTE", "URL"],
+            ARTICLE: {
+              keys: [
+                "AUTHOR",
+                "YEAR",
+                "TITLE",
+                "JOURNAL",
+                "VOLUME",
+                "DOI",
+                "URL",
+              ],
               separator: ". ",
+            },
+            BOOK: {
+              keys: [
+                "AUTHOR",
+                "YEAR",
+                "TITLE",
+                "JOURNAL",
+                "VOLUME",
+                "DOI",
+                "URL",
+              ],
             },
           };
 
@@ -110,15 +130,12 @@ function getTagsDictionary(entryTags) {
   if (entryTags.AUTHOR) {
     tags["AUTHOR"] = formatAuthors(entryTags.AUTHOR);
   }
+
+  if (entryTags.JOURNAL) {
+    tags["JOURNAL"] = "<i>" + entryTags.JOURNAL + "</i>";
+  }
   if (entryTags.TITLE) {
-    tags["TITLE_PLAIN"] = entryTags.TITLE;
-    if (entryTags.URL) {
-      tags["URL"] = '<a href="' + entryTags.URL + '">' + entryTags.URL + "</a>";
-      tags["TITLE"] =
-        '<a href="' + entryTags.URL + '">' + entryTags.TITLE + "</a>";
-    } else {
-      tags["TITLE"] = entryTags.TITLE;
-    }
+    tags["TITLE"] = entryTags.TITLE;
   }
   if (entryTags.BOOKTITLE) {
     tags["BOOKTITLE_PLAIN"] = entryTags.BOOKTITLE;
@@ -137,6 +154,26 @@ function getTagsDictionary(entryTags) {
 
   if (entryTags.NOTE) {
     tags["NOTE"] = "<br /><i>" + entryTags.NOTE + "</i>";
+  }
+  if (entryTags.YEAR) {
+    tags["YEAR"] = "(" + entryTags.YEAR + ")";
+  }
+  if (entryTags.VOLUME) {
+    tags["VOLUME"] = entryTags.VOLUME + "(" + entryTags.ISSUE + ")";
+    if (entryTags.PAGES) {
+      tags["VOLUME"] += ": " + entryTags.PAGES;
+    }
+  }
+  if (entryTags.DOI) {
+    tags["DOI"] =
+      '<a href="http://dx.doi.org/' +
+      entryTags.DOI +
+      '">' +
+      entryTags.DOI +
+      "</a>";
+  }
+  if (entryTags.URL) {
+    tags["URL"] = '<a href="' + entryTags.URL + '">' + entryTags.URL + "</a>";
   }
   return tags;
 }
