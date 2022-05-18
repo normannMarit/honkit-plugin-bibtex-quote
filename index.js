@@ -89,6 +89,7 @@ module.exports = {
                 "DOI",
                 "URL",
               ],
+              separator: ". ",
             },
           };
 
