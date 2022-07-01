@@ -84,10 +84,12 @@ module.exports = {
                 "AUTHOR",
                 "YEAR",
                 "TITLE",
+                "BOOKTITLE",
                 "JOURNAL",
                 "VOLUME",
                 "DOI",
                 "URL",
+                "PUBLISHER",
               ],
               separator: ". ",
             },
@@ -142,15 +144,23 @@ function getTagsDictionary(entryTags) {
     tags["BOOKTITLE_PLAIN"] = entryTags.BOOKTITLE;
     if (entryTags.BOOKURL) {
       tags["BOOKURL"] =
-        '<a href="' + entryTags.BOOKURL + '">' + entryTags.BOOKURL + "</a>";
+        '<i><a href="' +
+        entryTags.BOOKURL +
+        '">' +
+        entryTags.BOOKURL +
+        "</a></i>";
       tags["BOOKTITLE"] =
-        '<a href="' + entryTags.BOOKURL + '">' + entryTags.BOOKTITLE + "</a>";
+        '<i><a href="' +
+        entryTags.BOOKURL +
+        '">' +
+        entryTags.BOOKTITLE +
+        "</a></i>";
     } else {
       tags["BOOKTITLE"] = "<i>" + entryTags.BOOKTITLE + "</i>";
     }
   }
   if (entryTags.PUBLISHER) {
-    tags["PUBLISHER"] = "<i>" + entryTags.PUBLISHER + "</i>";
+    tags["PUBLISHER"] = entryTags.PUBLISHER;
   }
 
   if (entryTags.NOTE) {
@@ -183,7 +193,7 @@ function formatAuthors(authorsString) {
   var authors = authorsString.split("and");
 
   if (authors.length > 3) {
-    return authors[0] + " <i>et al.</i>";
+    return authors[0] + " et al.";
   } else {
     return authorsString;
   }
