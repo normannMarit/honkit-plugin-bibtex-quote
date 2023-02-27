@@ -193,7 +193,7 @@ function formatAuthors(authorsString) {
   var authors = authorsString.split("and");
 
   if (authors.length > 3) {
-    return authors[0] + " et al.";
+    return authors[0] + " et al";
   } else {
     return authorsString;
   }

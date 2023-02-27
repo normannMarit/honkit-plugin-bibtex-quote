@@ -3,7 +3,7 @@
   "description": "Bibtex citations for Honkit fork of https://github.com/canadaduane/gitbook-plugin-bibtex-cite ",
   "author": "Manuel Mitasch, Duane Johnson, Normann Marit",
   "main": "index.js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "engines": {
     "honkit": ">2.x.x"
   },
